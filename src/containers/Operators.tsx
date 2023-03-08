@@ -15,14 +15,14 @@ interface IProps {
   runtime?: boolean;
 }
 
+const operators: IRuntimeComp = {
+  id: Math.ceil(Math.random() * 100000),
+  type: "operators",
+};
+
 const Operators: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
   const dispatch = useAppDispatch();
-
-  const operators: IRuntimeComp = {
-    id: Math.ceil(Math.random() * 100000),
-    type: "operators",
-  };
 
   const { isInClass, isShadowClass, isInRuntime, themeClass } =
     useReturnClasses(operators, runtime, isShadow);

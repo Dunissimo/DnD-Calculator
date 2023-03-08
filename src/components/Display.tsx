@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { selectCalculator } from "../redux/slices/calculatorSlice";
+import { selectComponents } from "../redux/slices/componentsSlice";
 import {
   useReturnClasses,
   useDnD,
@@ -12,16 +13,16 @@ import { IRuntimeComp } from "../utils/types";
 interface IProps {
   runtime?: boolean;
 }
+const display: IRuntimeComp = {
+  id: Math.ceil(Math.random() * 100000),
+  type: "display",
+};
 
 const Display: FC<IProps> = ({ runtime }) => {
   const { handlers, onDragStart, onDrop } = useDnD();
+
   const { type, firstValue, secondValue, result } =
     useAppSelector(selectCalculator);
-
-  const display: IRuntimeComp = {
-    id: Math.ceil(Math.random() * 100000),
-    type: "display",
-  };
 
   const { isInClass, isInRuntime, themeClass } = useReturnClasses(
     display,

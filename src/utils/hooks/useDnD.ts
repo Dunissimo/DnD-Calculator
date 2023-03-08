@@ -33,6 +33,11 @@ export const useDnD = () => {
   const dragOverHandler: DragEventHandler = (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
+    const classList = e.currentTarget.classList;
+
+    if (classList.contains("runtime")) {
+      classList.add("dragged");
+    }
   };
   const dropHandler = (e: DragEvent, item: IRuntimeComp) => {
     e.preventDefault();

@@ -9,6 +9,7 @@ interface IProps {
 
 const ControlButton: FC<IProps> = ({ value, style, clickHandler }) => {
   const theme = useTheme() === "runtime";
+
   return (
     <div className="control-div text-center border border-[#E2E3E5] rounded-md">
       <button

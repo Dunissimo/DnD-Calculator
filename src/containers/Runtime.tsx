@@ -53,7 +53,7 @@ const Runtime: FC = () => {
           Нет компонентов для работы
         </div>
       ) : (
-        <div className="welcome w-full h-full z-[-1] absolute top-auto left-auto text-center flex gap-1 justify-center items-center flex-col border-4 border-dashed">
+        <div className="welcome w-full h-full absolute top-auto left-auto text-center flex gap-1 justify-center items-center flex-col border-4 border-dashed">
           <img src={drugMe} alt="" />
           <p className="text-blue-500">Перетащите сюда</p>
           <p className="text-[#6B7280]">

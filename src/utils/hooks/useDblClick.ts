@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { deleteComponent } from "../../redux/slices/componentsSlice";
 import { useAppDispatch } from "../hooks";
 import { IRuntimeComp } from "../types";
