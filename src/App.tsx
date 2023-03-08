@@ -1,14 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import Switch from "./components/Switch";
 import Runtime from "./containers/Runtime";
 import Constructor from "./containers/Constructor";
 
 const App: FC = () => {
-  const [media, setMedia] = useState(
+  const media =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
       navigator.userAgent
-    )
-  );
+    );
 
   if (media) {
     return (
