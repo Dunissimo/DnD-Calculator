@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* global styles */
+
+body {
+  font-family: "Inter", sans-serif;
+  position: relative;
+}
+
+.disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* components */
+
+.switch-button {
+  @apply flex justify-center items-center gap-1 cursor-pointer rounded-[5px] p-3 px-5 transition-[background] duration-300 hover:bg-white;
+}
+.switch-button-active {
+  @apply bg-white border border-[#E2E3E5];
+}
+
+.operators-div {
+  @apply p-1 flex justify-between bg-white items-center;
+}
+.equal-div {
+  @apply w-full p-1 bg-white rounded-sm;
+}
+.numbers-div {
+  @apply grid grid-cols-3 grid-rows-4 gap-2 p-1;
+}
+
+.component:not(.inRuntime),
+.component:not(.inRuntime) .control {
+  cursor: move;
+  transition: 0.3s;
+  border-radius: 4px;
+}
+.component.with-shadow {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.component:not(.disabled):not(.inRuntime):hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.component.disabled,
+.component.disabled .control-div,
+.component.disabled .control {
+  opacity: 0.5;
+  user-select: none;
+  cursor: not-allowed;
+}
+.component:not(.inRuntime):focus,
+.component:not(.inRuntime) .control-div:focus,
+.component:not(.inRuntime) .control:focus {
+  border: none;
+  outline: none;
+}
+
+.component:not(.display).runtime-component .control-div,
+.component:not(.display).runtime-component .control {
+  transition: 0.3s;
+}
+.component:not(.display).runtime-component.inRuntime .control {
+  cursor: pointer;
+}
+
+.component:not(.display).runtime-component.inRuntime .control-div:hover {
+  border: 1px solid blue;
+  outline: none;
+  border-radius: 6px;
+}
+.component:not(.display).runtime-component.inRuntime .control-div:active {
+  transform: scale(0.9);
+}
+
+.component .control {
+  cursor: move;
+}
+.component.display.inRuntime {
+  cursor: auto;
+}
+
+.main-container.components-disabled .component,
+.main-container.components-disabled .component .control-div,
+.main-container.components-disabled .component .control {
+  opacity: 0.5;
+  user-select: none;
+  cursor: not-allowed;
+}
+
+.main-container {
+  max-width: 800px;
+  height: auto;
+  padding: 0 2em;
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+}
+
+.dragged {
+  background: #f0f9ff;
+}
+.moving {
+  opacity: 0.5;
+}
+.runtime .welcome {
+  display: none;
+}
+
+.runtime.first-drop .welcome {
+  display: flex;
+}
