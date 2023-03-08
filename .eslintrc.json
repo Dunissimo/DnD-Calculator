@@ -1,0 +1,4 @@
+{
+  "extends": "react-app"
+}
+// Основной конфиг в зависимости eslint-config-react-app
