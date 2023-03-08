@@ -18,8 +18,6 @@ const Display: FC<IProps> = ({ runtime }) => {
   const { type, firstValue, secondValue, result } =
     useAppSelector(selectCalculator);
 
-  const [whatToShow, setWhat] = useState("first");
-
   const display: IRuntimeComp = {
     id: Math.ceil(Math.random() * 100000),
     type: "display",
@@ -33,12 +31,8 @@ const Display: FC<IProps> = ({ runtime }) => {
   const theme = useTheme() === "constructor";
   const dblClickHandler = useDblClick();
 
-  useEffect(() => {
-    setWhat(type);
-  }, [type]);
-
   const renderWhat = () => {
-    switch (whatToShow) {
+    switch (type) {
       case "first":
         return firstValue ? firstValue : "0";
       case "second":
@@ -46,10 +40,6 @@ const Display: FC<IProps> = ({ runtime }) => {
       case "result":
         return result;
     }
-  };
-
-  const checkLength = (value: number | string) => {
-    return value.toString().length > 15;
   };
 
   return (

@@ -65,7 +65,6 @@ export const calculatorSlice = createSlice({
             break;
           case "x":
             state.result = +firstValue * +secondValue;
-            console.log(state.result.toString().length < 12);
 
             if (!checkLength(state.result)) {
               state.result = "Cлишком много";

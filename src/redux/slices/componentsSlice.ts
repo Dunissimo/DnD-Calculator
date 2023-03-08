@@ -27,9 +27,6 @@ export const componentsSlice = createSlice({
         (comp) => comp.type === action.payload.type
       );
 
-      // const index = state.runtimeComponents.findIndex((comp) => {});
-      // console.log(index);
-
       if (index >= 0) {
         state.runtimeComponents.splice(index, 1);
         return;
