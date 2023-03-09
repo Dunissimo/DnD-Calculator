@@ -20,6 +20,8 @@ const display: IRuntimeComp = {
 
 const Display: FC<IProps> = ({ runtime }) => {
   const { handlers, onDragStart, onDrop } = useDnD();
+  const dblClickHandler = useDblClick();
+  const theme = useTheme() === "constructor";
 
   const { type, firstValue, secondValue, result } =
     useAppSelector(selectCalculator);
@@ -29,8 +31,6 @@ const Display: FC<IProps> = ({ runtime }) => {
     runtime,
     false
   );
-  const theme = useTheme() === "constructor";
-  const dblClickHandler = useDblClick();
 
   const renderWhat = () => {
     switch (type) {

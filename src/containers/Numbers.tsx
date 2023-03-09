@@ -9,6 +9,7 @@ import {
 } from "../utils/hooks";
 import { IRuntimeComp } from "../utils/types";
 import { addValue } from "../redux/slices/calculatorSlice";
+import { useClick } from "../utils/hooks/useClick";
 
 interface IProps {
   isShadow?: boolean;
@@ -22,18 +23,11 @@ const numbers: IRuntimeComp = {
 
 const Numbers: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
-  const dispatch = useAppDispatch();
-
+  const theme = useTheme() === "constructor";
+  const dblClickHandler = useDblClick();
+  const clickHandler = useClick();
   const { isInClass, isShadowClass, isInRuntime, themeClass } =
     useReturnClasses(numbers, runtime, isShadow);
-
-  const theme = useTheme() === "constructor";
-
-  const dblClickHandler = useDblClick();
-
-  const clickHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
-    dispatch(addValue(e.currentTarget.dataset.number));
-  };
 
   return (
     <div

@@ -7,6 +7,7 @@ import {
   useDblClick,
   useAppDispatch,
 } from "../utils/hooks";
+import { useClick } from "../utils/hooks/useClick";
 import { IRuntimeComp } from "../utils/types";
 import ControlButton from "./ControlButton";
 
@@ -22,17 +23,11 @@ const equal: IRuntimeComp = {
 
 const Equal: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
-  const dispatch = useAppDispatch();
-
-  const { isInClass, isShadowClass, isInRuntime, themeClass } =
-    useReturnClasses(equal, runtime, isShadow);
-
   const theme = useTheme() === "constructor";
   const dblClickHandler = useDblClick();
-
-  const clickHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
-    dispatch(calcResult());
-  };
+  const clickHandler = useClick();
+  const { isInClass, isShadowClass, isInRuntime, themeClass } =
+    useReturnClasses(equal, runtime, isShadow);
 
   return (
     <div

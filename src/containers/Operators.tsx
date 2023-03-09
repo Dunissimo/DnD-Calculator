@@ -8,6 +8,7 @@ import {
   useDblClick,
   useAppDispatch,
 } from "../utils/hooks";
+import { useClick } from "../utils/hooks/useClick";
 import { IRuntimeComp } from "../utils/types";
 
 interface IProps {
@@ -22,19 +23,11 @@ const operators: IRuntimeComp = {
 
 const Operators: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
-  const dispatch = useAppDispatch();
-
-  const { isInClass, isShadowClass, isInRuntime, themeClass } =
-    useReturnClasses(operators, runtime, isShadow);
-
   const theme = useTheme() === "constructor";
   const dblClickHandler = useDblClick();
-
-  const clickHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (e.currentTarget.dataset.number) {
-      dispatch(addOperator(e.currentTarget.dataset.number));
-    }
-  };
+  const clickHandler = useClick();
+  const { isInClass, isShadowClass, isInRuntime, themeClass } =
+    useReturnClasses(operators, runtime, isShadow);
 
   return (
     <div
