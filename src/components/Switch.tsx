@@ -1,46 +1,31 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
+import { useTheme, useToggle } from "../utils/hooks";
 
-import runtime from "../assets/eye.svg";
-import activeRuntime from "../assets/active-eye.svg";
 import constructor from "../assets/selector.svg";
 import activeConstructor from "../assets/active-selector.svg";
-import { selectTheme, toggleTheme } from "../redux/slices/themeSlice";
-import { useAppDispatch, useAppSelector } from "../utils/hooks";
+import activeRuntime from "../assets/active-eye.svg";
+import runtime from "../assets/eye.svg";
 
 const Switch: FC = () => {
-  const dispatch = useAppDispatch();
-  const theme = useAppSelector(selectTheme);
-
-  const setActive = (active: string) => {
-    dispatch(toggleTheme(active));
-  };
-
-  const clickHandler: MouseEventHandler<HTMLDivElement> = (e) => {
-    if (e.currentTarget.dataset.type) {
-      setActive(e.currentTarget.dataset.type);
-    }
-  };
-
-  // TODO: улучшить определени выбранного элемента.
-
-  const condition = theme === "runtime";
+  const theme = useTheme() === "runtime";
+  const clickHandler = useToggle();
 
   return (
     <div className="w-auto p-[1px] flex bg-[#F3F4F6] rounded-md">
       <div
-        className={`${condition ? "switch-button-active" : ""} switch-button`}
+        className={`${theme ? "switch-button-active" : ""} switch-button`}
         onClick={clickHandler}
         data-type="runtime"
       >
-        <img src={condition ? activeRuntime : runtime} alt="" />
+        <img src={theme ? activeRuntime : runtime} alt="" />
         <span className="text-sm leading-0">Runtime</span>
       </div>
       <div
-        className={`${condition ? "" : "switch-button-active"} switch-button`}
+        className={`${theme ? "" : "switch-button-active"} switch-button`}
         data-type="constructor"
         onClick={clickHandler}
       >
-        <img src={condition ? constructor : activeConstructor} alt="" />
+        <img src={theme ? constructor : activeConstructor} alt="" />
         <span className="text-sm leading-0">Constructor</span>
       </div>
     </div>

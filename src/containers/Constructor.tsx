@@ -1,15 +1,14 @@
 import { FC } from "react";
 import Display from "../components/Display";
 import Equal from "../components/Equal";
-import { selectCurrent } from "../redux/slices/currentCompSlice";
-import { useAppSelector, useTheme, useDnD } from "../utils/hooks";
+import { useCurrent, useTheme, useDnD } from "../utils/hooks";
 import Numbers from "./Numbers";
 import Operators from "./Operators";
 
 const Constructor: FC = () => {
   const { handlers, onDrop } = useDnD();
-  const current = useAppSelector(selectCurrent);
   const theme = useTheme() === "runtime";
+  const current = useCurrent();
 
   if (theme) {
     return <div className="constructor w-1/2 flex flex-col gap-4"></div>;

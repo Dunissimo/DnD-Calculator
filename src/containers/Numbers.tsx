@@ -1,15 +1,13 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
 import ControlButton from "../components/ControlButton";
 import {
   useReturnClasses,
   useDnD,
   useTheme,
   useDblClick,
-  useAppDispatch,
+  useClick,
 } from "../utils/hooks";
 import { IRuntimeComp } from "../utils/types";
-import { addValue } from "../redux/slices/calculatorSlice";
-import { useClick } from "../utils/hooks/useClick";
 
 interface IProps {
   isShadow?: boolean;
@@ -25,7 +23,7 @@ const Numbers: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
   const theme = useTheme() === "constructor";
   const dblClickHandler = useDblClick();
-  const clickHandler = useClick();
+  const { numberClickHandler: clickHandler } = useClick();
   const { isInClass, isShadowClass, isInRuntime, themeClass } =
     useReturnClasses(numbers, runtime, isShadow);
 

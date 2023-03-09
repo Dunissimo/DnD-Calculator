@@ -1,9 +1,6 @@
 import { FC, Fragment } from "react";
 
-import { useAppSelector, useTheme, useDnD } from "../utils/hooks";
-
-import { selectCurrent } from "../redux/slices/currentCompSlice";
-import { selectComponents } from "../redux/slices/componentsSlice";
+import { useTheme, useDnD, useCurrent, useComponents } from "../utils/hooks";
 
 import drugMe from "../assets/drugMe.svg";
 import { typeForComp } from "../utils/types";
@@ -14,8 +11,8 @@ import Operators from "./Operators";
 
 const Runtime: FC = () => {
   const { handlers, onDrop } = useDnD();
-  const components = useAppSelector(selectComponents);
-  const current = useAppSelector(selectCurrent);
+  const components = useComponents();
+  const current = useCurrent();
   const theme = useTheme() === "runtime";
 
   const getComponent = (type: typeForComp) => {

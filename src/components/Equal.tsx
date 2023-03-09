@@ -1,13 +1,11 @@
-import { FC, MouseEventHandler } from "react";
-import { calcResult } from "../redux/slices/calculatorSlice";
+import { FC } from "react";
 import {
   useReturnClasses,
   useDnD,
   useTheme,
   useDblClick,
-  useAppDispatch,
+  useClick,
 } from "../utils/hooks";
-import { useClick } from "../utils/hooks/useClick";
 import { IRuntimeComp } from "../utils/types";
 import ControlButton from "./ControlButton";
 
@@ -25,7 +23,7 @@ const Equal: FC<IProps> = ({ isShadow, runtime }) => {
   const { handlers, onDragStart } = useDnD();
   const theme = useTheme() === "constructor";
   const dblClickHandler = useDblClick();
-  const clickHandler = useClick();
+  const { equalClickHandler: clickHandler } = useClick();
   const { isInClass, isShadowClass, isInRuntime, themeClass } =
     useReturnClasses(equal, runtime, isShadow);
 

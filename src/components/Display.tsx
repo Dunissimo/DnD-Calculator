@@ -1,12 +1,10 @@
 import { FC } from "react";
-import { selectCalculator } from "../redux/slices/calculatorSlice";
-import { selectComponents } from "../redux/slices/componentsSlice";
 import {
   useReturnClasses,
   useDnD,
   useTheme,
   useDblClick,
-  useAppSelector,
+  useCalculator,
 } from "../utils/hooks";
 import { IRuntimeComp } from "../utils/types";
 
@@ -22,9 +20,7 @@ const Display: FC<IProps> = ({ runtime }) => {
   const { handlers, onDragStart, onDrop } = useDnD();
   const dblClickHandler = useDblClick();
   const theme = useTheme() === "constructor";
-
-  const { type, firstValue, secondValue, result } =
-    useAppSelector(selectCalculator);
+  const { type, result, firstValue, secondValue } = useCalculator();
 
   const { isInClass, isInRuntime, themeClass } = useReturnClasses(
     display,
